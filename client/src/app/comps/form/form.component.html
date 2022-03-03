@@ -1,0 +1,32 @@
+<form>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Task</mat-label>
+    <input
+      matInput
+      #taskInp
+      placeholder="Ex. Print the report"
+      autocomplete="off"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Customer</mat-label>
+    <mat-select #customerInp>
+      <mat-option
+        *ngFor="let customer of _data.customersArr"
+        [value]="customer.id"
+      >
+        {{ customer.name }}, {{customer.job}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button
+    mat-fab
+    color="primary"
+    (click)="
+      _data.addTask({ task: taskInp.value, customer: customerInp.value })
+    "
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</form>

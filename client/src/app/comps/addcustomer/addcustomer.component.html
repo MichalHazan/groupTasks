@@ -1,0 +1,14 @@
+
+  <div class="container">
+    <h1>Add new Customer</h1>
+    <form #f="ngForm" (ngSubmit)="_data.AddCustomer(form)">
+
+      <input type="text" required name="name" placeholder="name" [(ngModel)]="form.name">
+      <input type="text" required name="job" placeholder="job" [(ngModel)]="form.job">
+      <input type="text" required name="phone" placeholder="phone" [(ngModel)]="form.phone">
+      <input type="text" required name="mail" placeholder="mail" [(ngModel)]="form.mail">
+      <button>Add</button>
+    </form>
+    <p>{{f.value | json}}</p>
+  </div>
+

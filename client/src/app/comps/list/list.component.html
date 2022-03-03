@@ -1,0 +1,73 @@
+<app-form></app-form>
+<div class="list">
+  <table mat-table [dataSource]="_data.tasksArr" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td
+        mat-cell
+        *matCellDef="let element of _data.tasksArr"
+        [ngStyle]="element.complited ? { 'background-color': ' #67e962' } : {'background-color': ' #d44f4f'}"
+      >
+        {{ element.id }}
+      </td>
+    </ng-container>
+
+    <!-- Task Column -->
+    <ng-container matColumnDef="Task">
+      <th mat-header-cell *matHeaderCellDef>Task</th>
+      <td
+        [ngStyle]="element.complited && { 'text-decoration': 'line-through' }"
+        mat-cell
+        *matCellDef="let element of _data.tasksArr"
+      >
+        {{ element.task }}
+      </td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef>Created Date</th>
+      <td mat-cell *matCellDef="let element of _data.tasksArr">
+        {{ element.date | date: "short" }}
+      </td>
+    </ng-container>
+    <!-- Customer Column -->
+    <ng-container matColumnDef="Customer">
+      <th mat-header-cell *matHeaderCellDef>Customer</th>
+      <td mat-cell *matCellDef="let element of _data.tasksArr">
+        {{ element.customer }}
+      </td>
+    </ng-container>
+    <!-- Action Column -->
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-icon>drag_indicator</mat-icon>
+      </th>
+      <td mat-cell *matCellDef="let element of _data.tasksArr">
+        <div class="actions">
+          <mat-icon style="cursor: pointer" (click)="_data.delTask(element.id)"
+            >delete_forever</mat-icon
+          >
+          <mat-checkbox
+            class="example-margin"
+            [(ngModel)]="element.complited"
+            (click)="
+              _data.UpdateTask({
+                complited: !element.complited,
+                id: element.id
+              })
+            "
+            >Complit</mat-checkbox
+          >
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

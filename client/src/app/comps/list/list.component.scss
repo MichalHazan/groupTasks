@@ -1,0 +1,22 @@
+.list{
+  display: flex;
+  justify-content: center;
+  .actions{
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
+
+  }
+  padding-bottom: 10vh;
+}
+table {
+  width: 80%;
+  *{
+    padding: 2px;
+    text-align: center;
+  }
+}
+.example-margin {
+  margin: 0 10px;
+}
+
